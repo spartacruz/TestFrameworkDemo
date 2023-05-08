@@ -2,9 +2,12 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
 
 @pytest.fixture(scope="class")
 def setup(request):
+    # options = Options()
+    # options.add_argument("user-data-dir=C:/Users/speci/AppData/Local/Google/Chrome/User Data/Profile 1/")
     driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
     wait = WebDriverWait(driver, 10)
     driver.get("https://www.yatra.com/")
