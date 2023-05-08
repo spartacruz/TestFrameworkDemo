@@ -1,5 +1,7 @@
 # Test framework selenium python
 
+Experimental project. Testing purpose only
+
 - Selenium
 - Python
 - Pytest
