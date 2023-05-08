@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from pages.yatra_launch_page import LaunchPage
 
+
 @pytest.mark.usefixtures("setup")
 class TestSearchAndVerifyFilter():
     def test_search_flights(self):
@@ -24,20 +25,8 @@ class TestSearchAndVerifyFilter():
         # Click on flight search button
         lp.clickSearch()
 
-        pageLength = self.driver.execute_script(
-            "window.scrollTo(0, document.body.scrollHeight);var pageLength=document.body.scrollHeight;return pagelength;"
-        )
-        match = False
-        while (match == False):
-            lastCount = pageLength
-            time.sleep(2)
-            lenOfPage = self.driver.execute_script(
-                "window.scrollTo(0, document.body.scrollHeight);var pageLength=document.body.scrollHeight;return pagelength;"
-            )
-            if lastCount == pageLength:
-                match = True
-
-        time.sleep(4)
+        #scrolling element
+        lp.page_scroll()
 
         # Select the filter 1 stop
         # allstops = self.wait.until(

@@ -3,10 +3,12 @@ import time
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from base.base_driver import BaseDriver
 
 
-class LaunchPage():
+class LaunchPage(BaseDriver):
     def __init__(self, driver, wait):
+        super().__init__(driver, wait)
         self.driver = driver
         self.wait = wait
 
