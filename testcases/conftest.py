@@ -6,9 +6,20 @@ from selenium.webdriver.chrome.options import Options
 
 @pytest.fixture(scope="class")
 def setup(request):
-    # options = Options()
-    # options.add_argument("user-data-dir=C:/Users/speci/AppData/Local/Google/Chrome/User Data/Profile 1/")
+    options = Options()
+    options.add_argument(r"--no-sandbox")  # Bypass OS security model
+    options.add_argument(r"--disable-dev-shm-usage")  # overcome limited resource problems
+    options.add_argument(r"--disable-infobars")  # disabling infobars
+    options.add_argument(r"--disable-extensions")  # disabling extensions
+    options.add_argument(r"--disable-gpu")  # applicable to windows os only
+    options.binary_location = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    options.add_argument(r"--user-data-dir=C:\Users\speci\AppData\Local\Google\Chrome\User Data")
+    options.add_argument(r'--profile-directory=Profile 2')  # e.g. Profile 3
+
     driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
+    # driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
+    # driver = webdriver.Chrome(executable_path="C:/Users/speci/Downloads/chromedriver_win32 (2)/chromedriver.exe", chrome_options=options)
+
     wait = WebDriverWait(driver, 10)
     driver.get("https://www.yatra.com/")
     driver.maximize_window()
