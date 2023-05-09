@@ -2,7 +2,7 @@ import pytest
 from selenium.webdriver.common.by import By
 from pages.yatra_launch_page import LaunchPage
 from pages.search_flights_results_page import SearchFlightResults
-
+from utilities.utils import Utilities
 
 @pytest.mark.usefixtures("setup")
 class TestSearchAndVerifyFilter():
@@ -33,7 +33,5 @@ class TestSearchAndVerifyFilter():
         allstops1 = self.wait_for_presence_of_all_elements(By.XPATH, "//span[contains(text(), 'Non Stops' or contains(text(), '1 Stop' or contains(text(), '2 Stops')]")
         print(len(allstops1))
 
-        for stop in allstops1:
-            print("The text is: " + stop.text)
-            assert stop.text == "1 Stop"
-            print("assert pass")
+        ut = Utilities()
+        ut.assertListItemText(allstops1, "1 Stop")
