@@ -11,7 +11,7 @@ class TestSearchAndVerifyFilter():
 
         # Provide going from location
         lp = LaunchPage(self.driver)
-        lp.departFrom("New Delhi")
+        lp.enterDepartFromLocation("New Delhi")
 
         # Provide going to location
         lp.goingTo("New York")

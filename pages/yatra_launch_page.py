@@ -9,14 +9,27 @@ class LaunchPage(BaseDriver):
         super().__init__(driver)
         self.driver = driver
 
-    def departFrom(self, departLocation):
 
-        depart_from = self.wait_until_element_is_clickable(By.XPATH, "//input[@id='BE_flight_origin_city']")
-        depart_from.click()
-        depart_from.send_keys(departLocation)
+    DEPART_FROM_FIELD = "//input[@id='BE_flight_origin_city']"
+
+    def getDepartFromField(self):
+        return self.wait_until_element_is_clickable(By.XPATH, self.DEPART_FROM_FIELD)
+
+    def enterDepartFromLocation(self, departLocation):
+        self.getDepartFromField().click()
+        self.getDepartFromField().send_keys(departLocation)
         time.sleep(5)
-        depart_from.send_keys(Keys.ENTER)
+        self.getDepartFromField().send_keys(Keys.ENTER)
         time.sleep(5)
+
+    # def departFrom(self, departLocation):
+    #
+    #     depart_from = self.wait_until_element_is_clickable(By.XPATH, "//input[@id='BE_flight_origin_city']")
+    #     depart_from.click()
+    #     depart_from.send_keys(departLocation)
+    #     time.sleep(5)
+    #     depart_from.send_keys(Keys.ENTER)
+    #     time.sleep(5)
 
     def goingTo(self, goingToLocation):
 
