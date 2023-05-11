@@ -11,48 +11,57 @@ class LaunchPage(BaseDriver):
 
 
     DEPART_FROM_FIELD = "//input[@id='BE_flight_origin_city']"
+    GOING_TO_FIELD = "//input[@id='BE_flight_arrival_city']"
+    GOING_TO_RESULT_LIST = "//div[@class='viewport']//div[1]/li"
+    SELECT_DATE_FIELD = "//input[@id='BE_flight_origin_date']"
+    ALL_DATES = "//div[@id='monthWrapper']//tbody//td[@class!='inActiveTD']"
+    SEARCH_BUTTON = "//input[@value='Search Flights']"
 
     def getDepartFromField(self):
         return self.wait_until_element_is_clickable(By.XPATH, self.DEPART_FROM_FIELD)
 
+    def getGoingToField(self):
+        return self.wait_until_element_is_clickable(By.XPATH, self.GOING_TO_FIELD)
+
+    def getGoingToResultList(self):
+        return self.wait_for_presence_of_all_elements(By.XPATH, self.GOING_TO_RESULT_LIST)
+
+    def getSearchDateField(self):
+        return self.wait_until_element_is_clickable(By.XPATH, self.SELECT_DATE_FIELD)
+
+    def getAllDates(self):
+        return self.wait_until_element_is_clickable(By.XPATH, self.ALL_DATES)
+
+    def getSearchButton(self):
+        return self.driver.find_element(By.XPATH, self.SEARCH_BUTTON)
+
+
     def enterDepartFromLocation(self, departLocation):
         self.getDepartFromField().click()
         self.getDepartFromField().send_keys(departLocation)
-        time.sleep(5)
+        time.sleep(3)
         self.getDepartFromField().send_keys(Keys.ENTER)
-        time.sleep(5)
+        time.sleep(3)
 
-    # def departFrom(self, departLocation):
-    #
-    #     depart_from = self.wait_until_element_is_clickable(By.XPATH, "//input[@id='BE_flight_origin_city']")
-    #     depart_from.click()
-    #     depart_from.send_keys(departLocation)
-    #     time.sleep(5)
-    #     depart_from.send_keys(Keys.ENTER)
-    #     time.sleep(5)
+    def enterGoingToLocation(self, goingToLocation):
+        self.getGoingToField().click()
+        time.sleep(3)
+        self.getGoingToField().send_keys(goingToLocation)
+        time.sleep(3)
 
-    def goingTo(self, goingToLocation):
-
-        going_to = self.wait_until_element_is_clickable(By.XPATH, "//input[@id='BE_flight_arrival_city']")
-        going_to.click()
-        time.sleep(2)
-        going_to.send_keys(goingToLocation)
-        time.sleep(5)
-
-        search_results = self.wait_for_presence_of_all_elements(By.XPATH, "//div[@class='viewport']//div[1]/li")
+        search_results = self.getGoingToResultList()
 
         for results in search_results:
             if "New York (JFK)" in results.text:
                 results.click()
                 break
 
-        time.sleep(5)
+        time.sleep(3)
 
     def selectDate(self, departureDate):
-        self.wait_until_element_is_clickable(By.XPATH, "//input[@id='BE_flight_origin_date']").click()
+        self.getSearchDateField().click()
 
-        all_dates = self.wait_until_element_is_clickable(By.XPATH, "//div[@id='monthWrapper']//tbody//td[@class!='inActiveTD']")\
-            .find_elements(By.XPATH, "//div[@id='monthWrapper']//tbody//td[@class!='inActiveTD']")
+        all_dates = self.getAllDates().find_elements(By.XPATH, "//div[@id='monthWrapper']//tbody//td[@class!='inActiveTD']")
 
         for date in all_dates:
             if date.get_attribute("data-date") == departureDate:
@@ -62,5 +71,5 @@ class LaunchPage(BaseDriver):
 
     def clickSearch(self):
         time.sleep(4)
-        self.driver.find_element(By.XPATH, "//input[@value='Search Flights']").click()
+        self.getSearchButton().click()
         time.sleep(4)

@@ -14,10 +14,10 @@ class TestSearchAndVerifyFilter():
         lp.enterDepartFromLocation("New Delhi")
 
         # Provide going to location
-        lp.goingTo("New York")
+        lp.enterGoingToLocation("New York")
 
         # Select the departure date
-        lp.selectDate("10/05/2023")
+        lp.selectDate("15/05/2023")
 
         # Click on flight search button
         lp.clickSearch()
