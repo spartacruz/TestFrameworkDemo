@@ -68,8 +68,13 @@ class LaunchPage(BaseDriver):
                 date.click()
                 break
 
-
     def clickSearch(self):
         time.sleep(4)
         self.getSearchButton().click()
         time.sleep(4)
+
+    def searchFlight(self, departLocation, goingToLocation, departureDate):
+        self.enterDepartFromLocation(departLocation)
+        self.enterGoingToLocation(goingToLocation)
+        self.selectDate(departureDate)
+

@@ -11,13 +11,14 @@ class TestSearchAndVerifyFilter():
 
         # Provide going from location
         lp = LaunchPage(self.driver)
-        lp.enterDepartFromLocation("New Delhi")
-
-        # Provide going to location
-        lp.enterGoingToLocation("New York")
-
-        # Select the departure date
-        lp.selectDate("15/05/2023")
+        lp.searchFlight("New Delhi", "New York", "15/05/2023")
+        # lp.enterDepartFromLocation("New Delhi")
+        #
+        # # Provide going to location
+        # lp.enterGoingToLocation("New York")
+        #
+        # # Select the departure date
+        # lp.selectDate("15/05/2023")
 
         # Click on flight search button
         lp.clickSearch()
