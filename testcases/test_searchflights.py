@@ -11,7 +11,7 @@ class TestSearchAndVerifyFilter():
 
         # Provide going from location
         lp = LaunchPage(self.driver)
-        lp.searchFlight("New Delhi", "New York", "15/05/2023")
+        sf = lp.searchFlight("New Delhi", "New York", "15/05/2023")
 
         # Click on flight search button
         lp.clickSearch()
@@ -20,7 +20,6 @@ class TestSearchAndVerifyFilter():
         lp.page_scroll()
 
         # Select the filter 1 stop
-        sf = SearchFlightResults(self.driver)
         sf.filter_flights_by_stop("1 Stop")
 
         # Verify that the filtered results show flights having only 1 stop

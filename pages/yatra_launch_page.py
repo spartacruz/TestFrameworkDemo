@@ -2,6 +2,7 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from base.base_driver import BaseDriver
+from pages.search_flights_results_page import SearchFlightResults
 
 
 class LaunchPage(BaseDriver):
@@ -77,4 +78,5 @@ class LaunchPage(BaseDriver):
         self.enterDepartFromLocation(departLocation)
         self.enterGoingToLocation(goingToLocation)
         self.selectDate(departureDate)
+        return SearchFlightResults(self.driver)
 
