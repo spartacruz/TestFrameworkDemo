@@ -21,10 +21,10 @@ class TestSearchAndVerifyFilter():
 
         # Select the filter 1 stop
         sf = SearchFlightResults(self.driver)
-        sf.filter_flights()
+        sf.filter_flights_by_stop("1 Stop")
 
         # Verify that the filtered results show flights having only 1 stop
-        allstops1 = self.wait_for_presence_of_all_elements(By.XPATH, "//span[contains(text(), 'Non Stops' or contains(text(), '1 Stop' or contains(text(), '2 Stops')]")
+        allstops1 = sf.get_search_flight_results()
         print(len(allstops1))
 
         ut = Utilities()
