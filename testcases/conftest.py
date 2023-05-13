@@ -8,9 +8,9 @@ from selenium_stealth import stealth
 def setup(request):
     options = Options()
     options.add_argument(r"--no-sandbox")  # Bypass OS security model
-    # options.add_argument(r"--disable-dev-shm-usage")  # overcome limited resource problems
+    options.add_argument("disable-dev-shm-usage")  # overcome limited resource problems
     # options.add_argument(r"--disable-infobars")  # disabling infobars
-    # options.add_argument(r"--disable-extensions")  # disabling extensions
+    options.add_argument("disable-extensions")  # disabling extensions
     # options.add_argument(r"--disable-gpu")  # applicable to windows os only
     # options.binary_location = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
     # options.add_argument(r"--user-data-dir=C:\Users\speci\AppData\Local\Google\Chrome\User Data")
