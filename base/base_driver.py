@@ -10,19 +10,25 @@ class BaseDriver:
 
     def page_scroll(self):
         pageLength = self.driver.execute_script(
-            "window.scrollTo(0, document.body.scrollHeight);var pageLength=document.body.scrollHeight;return pagelength;"
+            "window.scrollTo(0, document.body.scrollHeight);var pageLength=document.body.scrollHeight;return pageLength;"
         )
         match = False
+        lastCount = pageLength
+
         while (match == False):
-            lastCount = pageLength
             time.sleep(2)
             lenOfPage = self.driver.execute_script(
-                "window.scrollTo(0, document.body.scrollHeight);var pageLength=document.body.scrollHeight;return pagelength;"
-            )
-            if lastCount == pageLength:
-                match = True
+                "window.scrollTo(0, document.body.scrollHeight);var pageLength=document.body.scrollHeight;return pageLength;"
+            ) #200
 
+            if lastCount == lenOfPage:
+                match = True
+            else:
+                lastCount = lenOfPage
         time.sleep(4)
+
+    def page_scroll_to_top(self):
+        self.driver.execute_script("window.scrollTo(0, 0);")
 
     def wait_for_presence_of_all_elements(self, locator_type, locator):
         wait = WebDriverWait(self.driver, 10)
