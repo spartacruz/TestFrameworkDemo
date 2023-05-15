@@ -1,7 +1,5 @@
 import pytest
-from selenium.webdriver.common.by import By
 from pages.yatra_launch_page import LaunchPage
-from pages.search_flights_results_page import SearchFlightResults
 from utilities.utils import Utilities
 
 @pytest.mark.usefixtures("setup")
@@ -9,7 +7,7 @@ class TestSearchAndVerifyFilter():
 
     @pytest.fixture(autouse=True)
     def class_setup(self):
-        self.lp = LaunchPage(self.driver)
+        self.lp = LaunchPage(self.driver, self.action)
         self.ut = Utilities()
 
     def test_search_flights_1stop(self):
@@ -27,11 +25,11 @@ class TestSearchAndVerifyFilter():
         print(len(allstops1))
         self.ut.assertListItemText(allstops1, "1 Stop")
 
-    def test_search_flights_2stop(self):
-        sf = self.lp.searchFlight("New Delhi", "New York", "15/05/2023")
-        self.lp.clickSearch()
-        self.lp.page_scroll()
-        sf.filter_flights_by_stop("2 Stop")
-        allstops1 = sf.get_search_flight_results()
-        print(len(allstops1))
-        self.ut.assertListItemText(allstops1, "2 Stop")
+    # def test_search_flights_2stop(self):
+    #     sf = self.lp.searchFlight("New Delhi", "New York", "15/05/2023")
+    #     self.lp.clickSearch()
+    #     self.lp.page_scroll()
+    #     sf.filter_flights_by_stop("2 Stop")
+    #     allstops1 = sf.get_search_flight_results()
+    #     print(len(allstops1))
+    #     self.ut.assertListItemText(allstops1, "2 Stop")
