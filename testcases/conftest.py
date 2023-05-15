@@ -13,7 +13,15 @@ def setup(request, browser, options, url):
     if browser == "chrome":
         driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
 
-        # Selenium Stealth settings
+    elif browser == "firefox":
+        driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+    elif browser == "edge":
+        driver = webdriver.Edge(executable_path=EdgeChromiumDriverManager().install())
+    else:
+        driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
+
+    if driver.capabilities['browserName'] == "chrome":
+        # Selenium Stealth settings - bypass bot checking
         stealth(driver,
                 languages=["en-US", "en"],
                 vendor="Google Inc.",
@@ -22,15 +30,6 @@ def setup(request, browser, options, url):
                 renderer="Intel Iris OpenGL Engine",
                 fix_hairline=True,
                 )
-
-    elif browser == "firefox":
-        driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
-    elif browser == "edge":
-        driver = webdriver.Edge(executable_path=EdgeChromiumDriverManager().install())
-    else:
-        driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
-
-
 
     # create action chain object
     action = ActionChains(driver)
