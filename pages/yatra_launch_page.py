@@ -6,9 +6,10 @@ from pages.search_flights_results_page import SearchFlightResults
 
 
 class LaunchPage(BaseDriver):
-    def __init__(self, driver):
+    def __init__(self, driver, action):
         super().__init__(driver)
         self.driver = driver
+        self.action = action
 
 
     DEPART_FROM_FIELD = "//input[@id='BE_flight_origin_city']"
@@ -78,5 +79,5 @@ class LaunchPage(BaseDriver):
         self.enterDepartFromLocation(departLocation)
         self.enterGoingToLocation(goingToLocation)
         self.selectDate(departureDate)
-        return SearchFlightResults(self.driver)
+        return SearchFlightResults(self.driver, self.action)
 
