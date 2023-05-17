@@ -24,12 +24,3 @@ class TestSearchAndVerifyFilter():
         allstops1 = sf.get_search_flight_results()
         print(len(allstops1))
         self.ut.assertListItemText(allstops1, "1 Stop")
-
-    # def test_search_flights_2stop(self):
-    #     sf = self.lp.searchFlight("New Delhi", "New York", "15/05/2023")
-    #     self.lp.clickSearch()
-    #     self.lp.page_scroll()
-    #     sf.filter_flights_by_stop("2 Stop")
-    #     allstops1 = sf.get_search_flight_results()
-    #     print(len(allstops1))
-    #     self.ut.assertListItemText(allstops1, "2 Stop")
