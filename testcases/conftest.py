@@ -26,7 +26,7 @@ def setup(request, browser, options, url):
                 languages=["en-US", "en"],
                 vendor="Google Inc.",
                 platform="Win32",
-                webgl_vendor="Intel Inc.",
+                webgl_vendor="Intel Inc.er",
                 renderer="Intel Iris OpenGL Engine",
                 fix_hairline=True,
                 )
@@ -69,9 +69,9 @@ def options(request):
     options = Options()
     options.add_argument("no-sandbox")  # Bypass OS security model
     options.add_argument("disable-notifications")
-    # options.add_argument("disable-dev-shm-usage")  # overcome limited resource problems
-    # options.add_argument(r"--disable-infobars")  # disabling infobars
-    # options.add_argument("disable-extensions")  # disabling extensions
+    options.add_argument("disable-dev-shm-usage")  # overcome limited resource problems
+    options.add_argument("disable-infobars")  # disabling infobars
+    options.add_argument("disable-extensions")  # disabling extensions
     options.add_argument("start-maximized")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
