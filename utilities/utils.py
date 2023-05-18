@@ -7,16 +7,15 @@ class Utilities(softest.TestCase):
         for stop in list:
             print("The text is: " + stop.text)
 
-            # try:
-            #     self.soft_assert(self.assertEqual, stop.text, value)
-            # except AssertionError:
-            #     pass
-
             try:
-                assert stop.text == value
+                self.soft_assert(self.assertEqual, stop.text, value)
             except AssertionError:
                 pass
-            # print("assert pass")
+
+            # try:
+            #     assert stop.text == value
+            # except AssertionError:
+            #     pass
 
             if stop.text == value:
                 print("Test Passed")
