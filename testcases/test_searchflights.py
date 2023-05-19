@@ -1,7 +1,7 @@
 import pytest
 from pages.yatra_launch_page import LaunchPage
 from utilities.utils import Utilities
-from ddt import ddt, data, unpack
+from ddt import ddt, data, file_data, unpack
 import softest
 
 @ddt()
@@ -15,8 +15,11 @@ class TestSearchAndVerifyFilter(softest.TestCase):
 
     #can be multiple case - just make a second tuple
     #@data(("New Delhi", "New York", "20/05/2023", "1 Stop"), ("New Delhi", "jfk", "23/05/2023", "1 Stop"))
-    @data(("New Delhi", "New York", "20/05/2023", "1 Stop"))
-    @unpack
+    # @data(("New Delhi", "New York", "20/05/2023", "1 Stop"))
+    # @unpack
+
+    # @file_data("../testdata/testdata.json")
+    @file_data("../testdata/testyaml.yaml")
     def test_search_flights_1stop(self, goingfrom, goingto, date, stops):
         # Launching browser and opening the travel website
         # Provide going from location
