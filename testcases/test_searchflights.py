@@ -20,7 +20,8 @@ class TestSearchAndVerifyFilter(softest.TestCase):
 
     # @file_data("../testdata/testdata.json")
     # @file_data("../testdata/testyaml.yaml")
-    @data(*Utilities.read_data_from_excel("C:\\Users\\speci\\PycharmProjects\\TestFrameworkDemo\\testdata\\testdata.xlsx", "Sheet1"))
+    # @data(*Utilities.read_data_from_excel("C:\\Users\\speci\\PycharmProjects\\TestFrameworkDemo\\testdata\\testdata.xlsx", "Sheet1"))
+    @data(*Utilities.read_data_from_csv("C:\\Users\\speci\\PycharmProjects\\TestFrameworkDemo\\testdata\\testdata.csv"))
     @unpack
     def test_search_flights_1stop(self, goingfrom, goingto, date, stops):
         # Launching browser and opening the travel website
