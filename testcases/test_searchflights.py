@@ -19,7 +19,9 @@ class TestSearchAndVerifyFilter(softest.TestCase):
     # @unpack
 
     # @file_data("../testdata/testdata.json")
-    @file_data("../testdata/testyaml.yaml")
+    # @file_data("../testdata/testyaml.yaml")
+    @data(*Utilities.read_data_from_excel("C:\\Users\\speci\\PycharmProjects\\TestFrameworkDemo\\testdata\\testdata.xlsx", "Sheet1"))
+    @unpack
     def test_search_flights_1stop(self, goingfrom, goingto, date, stops):
         # Launching browser and opening the travel website
         # Provide going from location
