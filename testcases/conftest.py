@@ -9,8 +9,10 @@ from selenium.webdriver.common.action_chains import ActionChains
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
+
 @pytest.fixture(autouse=True)
 def setup(request, browser, options, url):
+    global driver
     if browser == "chrome":
         driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
 
